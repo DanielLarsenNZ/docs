@@ -104,6 +104,19 @@ Recommendations for how App Service Plans are configured.
 
 ### Use local cache
 
+1.	Set a default minimum of 2 instances. Don’t scale to one instance
+2.	Enable Local Cache: https://docs.microsoft.com/en-us/azure/app-service/overview-local-cache#enable-local-cache-in-app-service. Be careful if you are writing state to local disk that you expect to be available to other instances in the App Service Plan. This won’t work with Local Cache enabled (the article explains further)
+3.	Use Local Cache in conjunction with the Staging Slots feature and perform Swaps. Instructions here: https://docs.microsoft.com/en-us/azure/app-service/overview-local-cache#best-practices-for-using-app-service-local-cache
+4.	Configure Custom Warmup. The fabric will also use this applicationInitialization feature during unplanned and planned maintenance (if it can).
+
+## Application Initialization
+
+<https://docs.microsoft.com/en-us/azure/app-service/deploy-staging-slots#Warm-up>
+
+<https://ruslany.net/2015/09/how-to-warm-up-azure-web-app-during-deployment-slots-swap/>
+
+<https://michaelcandido.com/app-service-warm-up-demystified/>
+
 ### Avoid Session State Affinity (ARR)
 
 ### Configure a XXXX Ready endpoint
